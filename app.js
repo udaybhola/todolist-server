@@ -5,8 +5,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var app = express();
-const port = process.env.PORT || '3000';
+const port = process.env.PORT || '3002';
 const errorHandler = require('./_helpers/error-handler');
+const jwt = require('./_helpers/jwt');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,6 +31,7 @@ app.all('*', function(req, res, next) {
   }
 });
 
+app.use(jwt());
 app.use('/todoItems', require('./routes/todoItem'));
 app.use('/users', require('./routes/users'));
 app.use(errorHandler);
