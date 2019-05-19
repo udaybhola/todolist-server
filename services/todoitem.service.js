@@ -8,7 +8,8 @@ module.exports = {
     async getAllItems() {
         return await TodoItem.find();
     },
-    async addItem(item) {
+    async addItem(item, userId) {
+        item.userId = userId;
         var newItem = new TodoItem(item);
         return await newItem.save();
     },

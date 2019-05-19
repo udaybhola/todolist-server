@@ -12,7 +12,7 @@ module.exports = {
             .catch(err => next(err));
     },
     addItem(req, res, next) {
-        todoService.addItem(req.body)
+        todoService.addItem(req.body, req.userId)
             .then(item => item ? res.json(item) : res.sendStatus(404))
             .catch(err => next(err));
     },
